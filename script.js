@@ -147,9 +147,9 @@ function generateThirdMirroredImage() {
         canvas2.width = canvas1.width * 2;
         canvas2.height = canvas1.height;
 
-        ctx2.drawImage(mirroredImage1, mirroredImage1.width, 0, mirroredImage1.width, mirroredImage1.height);
-        ctx2.scale(-1, 1);
         ctx2.drawImage(mirroredImage1, 0, 0, mirroredImage1.width, mirroredImage1.height);
+        ctx2.scale(-1, 1);
+        ctx2.drawImage(mirroredImage1, -mirroredImage1.width, 0, mirroredImage1.width, mirroredImage1.height);
 
         const finalImage = new Image();
         finalImage.src = canvas2.toDataURL();
@@ -179,12 +179,12 @@ function generateFourthMirroredImage() {
         const ctx2 = canvas2.getContext('2d');
 
         // Create the second mirrored image (right)
-        canvas2.width = canvas1.width;
-        canvas2.height = canvas1.height * 2;
+        canvas2.width = canvas1.width * 2;
+        canvas2.height = canvas1.height;
 
-        ctx2.drawImage(mirroredImage1, 0, canvas1.height, canvas1.width, canvas1.height);
-        ctx2.scale(1, -1);
         ctx2.drawImage(mirroredImage1, 0, 0, canvas1.width, canvas1.height);
+        ctx2.scale(-1, 1);
+        ctx2.drawImage(mirroredImage1, -canvas1.width, 0, canvas1.width, canvas1.height);
 
         const finalImage = new Image();
         finalImage.src = canvas2.toDataURL();
@@ -192,6 +192,7 @@ function generateFourthMirroredImage() {
         outputImages.appendChild(finalImage);
     };
 }
+
 
 
 
