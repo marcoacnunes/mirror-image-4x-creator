@@ -123,91 +123,134 @@ function generateSecondMirroredImage() {
     };
 }
 
+generateBtn.addEventListener("click", () => {
+  if (!uploadedImage) {
+    alert("Please upload an image first");
+    return;
+  }
+
+  outputImages.innerHTML = "";
+
+  generateFirstMirroredImage();
+  generateSecondMirroredImage();
+  generateThirdMirroredImage();
+  generateFourthMirroredImage();
+});
+
 // Create the third mirrored image (up, left)
 function generateThirdMirroredImage() {
-    const canvas1 = document.createElement('canvas');
-    const ctx1 = canvas1.getContext('2d');
+  const canvas1 = document.createElement("canvas");
+  const ctx1 = canvas1.getContext("2d");
 
-    // Create the first mirrored image (up)
-    canvas1.width = uploadedImage.width;
-    canvas1.height = uploadedImage.height * 2;
+  // Create the first mirrored image (up)
+  canvas1.width = uploadedImage.width;
+  canvas1.height = uploadedImage.height * 2;
 
-    ctx1.drawImage(uploadedImage, 0, uploadedImage.height, uploadedImage.width, uploadedImage.height);
-    ctx1.scale(1, -1);
-    ctx1.drawImage(uploadedImage, 0, 0, uploadedImage.width, uploadedImage.height);
+  ctx1.drawImage(
+    uploadedImage,
+    0,
+    uploadedImage.height,
+    uploadedImage.width,
+    uploadedImage.height
+  );
+  ctx1.scale(1, -1);
+  ctx1.drawImage(
+    uploadedImage,
+    0,
+    0,
+    uploadedImage.width,
+    uploadedImage.height
+  );
 
-    const mirroredImage1 = new Image();
-    mirroredImage1.src = canvas1.toDataURL();
+  const mirroredImage1 = new Image();
+  mirroredImage1.src = canvas1.toDataURL();
 
-    mirroredImage1.onload = () => {
-        const canvas2 = document.createElement('canvas');
-        const ctx2 = canvas2.getContext('2d');
+  mirroredImage1.onload = () => {
+    const canvas2 = document.createElement("canvas");
+    const ctx2 = canvas2.getContext("2d");
 
-        // Create the second mirrored image (left)
-        canvas2.width = canvas1.width * 2;
-        canvas2.height = canvas1.height;
+    // Create the second mirrored image (left)
+    canvas2.width = canvas1.width * 2;
+    canvas2.height = canvas1.height;
 
-        ctx2.drawImage(mirroredImage1, 0, 0, mirroredImage1.width, mirroredImage1.height);
-        ctx2.scale(-1, 1);
-        ctx2.drawImage(mirroredImage1, -mirroredImage1.width, 0, mirroredImage1.width, mirroredImage1.height);
+    ctx2.drawImage(
+      mirroredImage1,
+      mirroredImage1.width,
+      0,
+      mirroredImage1.width,
+      mirroredImage1.height
+    );
+    ctx2.scale(-1, 1);
+    ctx2.drawImage(
+      mirroredImage1,
+      0,
+      0,
+      mirroredImage1.width,
+      mirroredImage1.height
+    );
 
-        const finalImage = new Image();
-        finalImage.src = canvas2.toDataURL();
-        finalImage.className = 'thumbnail';
-        outputImages.appendChild(finalImage);
-    };
+    const finalImage = new Image();
+    finalImage.src = canvas2.toDataURL();
+    finalImage.className = "thumbnail";
+    outputImages.appendChild(finalImage);
+  };
 }
 
 // Create the fourth mirrored image (left, right)
 function generateFourthMirroredImage() {
-    const canvas1 = document.createElement('canvas');
-    const ctx1 = canvas1.getContext('2d');
+  const canvas1 = document.createElement("canvas");
+  const ctx1 = canvas1.getContext("2d");
 
-    // Create the first mirrored image (left)
-    canvas1.width = uploadedImage.width * 2;
-    canvas1.height = uploadedImage.height;
+  // Create the first mirrored image (left)
+  canvas1.width = uploadedImage.width * 2;
+  canvas1.height = uploadedImage.height;
 
-    ctx1.drawImage(uploadedImage, uploadedImage.width, 0, uploadedImage.width, uploadedImage.height);
-    ctx1.scale(-1, 1);
-    ctx1.drawImage(uploadedImage, 0, 0, uploadedImage.width, uploadedImage.height);
+  ctx1.drawImage(
+    uploadedImage,
+    uploadedImage.width,
+    0,
+    uploadedImage.width,
+    uploadedImage.height
+  );
+  ctx1.scale(-1, 1);
+  ctx1.drawImage(
+    uploadedImage,
+    0,
+    0,
+    uploadedImage.width,
+    uploadedImage.height
+  );
 
-    const mirroredImage1 = new Image();
-    mirroredImage1.src = canvas1.toDataURL();
+  const mirroredImage1 = new Image();
+  mirroredImage1.src = canvas1.toDataURL();
 
-    mirroredImage1.onload = () => {
-        const canvas2 = document.createElement('canvas');
-        const ctx2 = canvas2.getContext('2d');
+  mirroredImage1.onload = () => {
+    const canvas2 = document.createElement("canvas");
+    const ctx2 = canvas2.getContext("2d");
 
-        // Create the second mirrored image (right)
-        canvas2.width = canvas1.width * 2;
-        canvas2.height = canvas1.height;
+    // Create the second mirrored image (right)
+    canvas2.width = canvas1.width;
+    canvas2.height = canvas1.height * 2;
 
-        ctx2.drawImage(mirroredImage1, 0, 0, canvas1.width, canvas1.height);
-        ctx2.scale(-1, 1);
-        ctx2.drawImage(mirroredImage1, -canvas1.width, 0, canvas1.width, canvas1.height);
+    ctx2.drawImage(
+      mirroredImage1,
+      0,
+      mirroredImage1.height,
+      mirroredImage1.width,
+      mirroredImage1.height
+    );
+    ctx2.scale(1, -1);
+    ctx2.drawImage(
+      mirroredImage1,
+      0,
+      0,
+      mirroredImage1.width,
+      mirroredImage1.height
+    );
 
-        const finalImage = new Image();
-        finalImage.src = canvas2.toDataURL();
-        finalImage.className = 'thumbnail';
-        outputImages.appendChild(finalImage);
-    };
+    const finalImage = new Image();
+    finalImage.src = canvas2.toDataURL();
+    finalImage.className = "thumbnail";
+    outputImages.appendChild(finalImage);
+  };
 }
-
-
-
-
-  
-  
-generateBtn.addEventListener('click', () => {
-    if (!uploadedImage) {
-        alert('Please upload an image first');
-        return;
-    }
-
-    outputImages.innerHTML = '';
-
-    generateFirstMirroredImage();
-    generateSecondMirroredImage();
-    generateThirdMirroredImage();
-    generateFourthMirroredImage();
-});
