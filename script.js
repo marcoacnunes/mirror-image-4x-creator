@@ -160,7 +160,6 @@ function generateThirdMirroredImage() {
         outputImages.appendChild(finalImage);
     };
 }
-
 // Create the fourth mirrored image (Up, Left)
 function generateFourthMirroredImage() {
     const canvas1 = document.createElement('canvas');
@@ -170,10 +169,12 @@ function generateFourthMirroredImage() {
     canvas1.width = uploadedImage.width;
     canvas1.height = uploadedImage.height * 2;
 
+    ctx1.drawImage(uploadedImage, 0, uploadedImage.height, uploadedImage.width, uploadedImage.height);
     ctx1.scale(1, -1);
-    ctx1.drawImage(uploadedImage, 0, -uploadedImage.height, uploadedImage.width, uploadedImage.height);
-    ctx1.setTransform(1, 0, 0, 1, 0, 0); // Reset the context's scale
     ctx1.drawImage(uploadedImage, 0, 0, uploadedImage.width, uploadedImage.height);
+
+    // Reset the context's scale
+    ctx1.setTransform(1, 0, 0, 1, 0, 0);
 
     const mirroredImage1 = new Image();
     mirroredImage1.src = canvas1.toDataURL();
@@ -186,9 +187,8 @@ function generateFourthMirroredImage() {
         canvas2.width = mirroredImage1.width * 2;
         canvas2.height = mirroredImage1.height;
 
+        ctx2.drawImage(mirroredImage1, mirroredImage1.width, 0, mirroredImage1.width, mirroredImage1.height);
         ctx2.scale(-1, 1);
-        ctx2.drawImage(mirroredImage1, -mirroredImage1.width, 0, mirroredImage1.width, mirroredImage1.height);
-        ctx2.setTransform(1, 0, 0, 1, 0, 0); // Reset the context's scale
         ctx2.drawImage(mirroredImage1, 0, 0, mirroredImage1.width, mirroredImage1.height);
 
         const finalImage = new Image();
@@ -197,6 +197,7 @@ function generateFourthMirroredImage() {
         outputImages.appendChild(finalImage);
     };
 }
+
 
 
 
