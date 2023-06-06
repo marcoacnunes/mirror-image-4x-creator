@@ -1,3 +1,5 @@
+<img src="https://github.com/marcoacnunes/mirror-image-4x-creator/blob/main/ezgif.com-video-to-gif.gif" width="80%" height="80%"/>
+
 # Image-Mirror-Generator
 
 This project is a web application that allows you to upload an image, which then generates four distinct mirrored copies of your image.
